@@ -9,3 +9,4 @@ venv/
 *.png
 *.pyc
 helpers.py*
+.idea/*
