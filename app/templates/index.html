@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+<div class="search_bars">
+
+    <div class="bar query_bar">
+
+        <input type="text" name="query" placeholder="query string" autocomplete="off">
+
+    </div>
+    <div class="bar main_bar">
+
+        <input autocomplete="off" type="text" name="make" placeholder="make"><img id="help_make" src="{{ url_for('static', filename='images/help.png') }}" data-tippy-content="makes" style="
+                position: absolute;
+                left: 23.7%;
+                margin-top: 5px;"/>
+
+		<img id="expand" style="position: absolute;top: 54px;left: 48%;transform: translate(50%,-50%);z-index: 1000;" src="{{ url_for('static', filename='images/expand.png') }}"/>
+		<img id="retract" style="position: absolute;top: 108px;left: 49.4%;transform: rotate(180deg) translate(50%,-50%);z-index: 1000;" src="{{ url_for('static', filename='images/expand.png') }}"/>
+        <input type="text" autocomplete="off" name="model" placeholder="model"><img id="help_model" src="{{ url_for('static', filename='images/help.png') }}" data-tippy-content="models" style="
+                position: absolute;
+                left: 48.1%;
+                margin-top: 5px;"/>
+        <input type="text" name="geo" autocomplete="off" placeholder="address">
+		<img id="search" style="height: 26px;position: absolute; right: 5px;" src="{{ url_for('static', filename='images/search.png') }}"/>
+        <input type="text" name="radius" autocomplete="off" placeholder="search radius">
+
+    </div>
+    <div class="bar advance_bar">
+
+        <input type="text" name="trim" placeholder="trim" autocomplete="off"><img id="help_trim" src="{{ url_for('static', filename='images/help.png') }}" data-tippy-content="makes" style="
+                position: absolute;
+                left: 11.3%;
+                margin-top: 5px;"/>
+        <input type="text" name="series" placeholder="series" autocomplete="off"><img id="help_series" src="{{ url_for('static', filename='images/help.png') }}" data-tippy-content="makes" style="
+                position: absolute;
+                left: 23.7%;
+                margin-top: 5px;"/>
+        <input type="text" name="min_year" placeholder="min year" autocomplete="off">
+        <input type="text" name="max_year" placeholder="max year" autocomplete="off">
+        <input type="text" name="min_price" placeholder="min price" autocomplete="off">
+        <input type="text" name="max_price" placeholder="max price" autocomplete="off">
+        <input type="text" name="min_mileage" placeholder="min mileage" autocomplete="off">
+        <input type="text" name="max_mileage" placeholder="max mileage" autocomplete="off">
+
+    </div>
+
+</div>
+
+<div id="cover"></div>
+<div id="content">
+
+    <div class="row map_stuff">
+        <div id="map_container" class="col-md-8">
+            <div id="map">
+                <div class="top_left_info">
+                	<div class="btn-group-vertical" id="density_controls" style="z-index: 1001"> <!-- Use 401 to be between map and controls -->
+    					<button type="buttons" id="price_map" class="btn btn-dark no-ring">Price Map</button>
+    					<button type="buttons" id="mileage_map" class="btn btn-light no-ring">Mileage Map</button>
+    					<button type="buttons" id="count_map" class="btn btn-secondary no-ring">Count Map</button>
+                	</div>
+               		<div class="btn-group-vertical" id="total_count">
+                		<button type="buttons" class="btn btn-info noclick" id="count_field">No Posts</button>
+                        <button type="buttons" onclick="refresh_map()" class="btn btn-secondary no-ring" style="padding: 2px 5px 2px 5px;height: 28px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                                <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" fill="white"></path>
+                                <path d="M0 0h24v24H0z" fill="none"></path>
+                            </svg>
+                        </button>
+					</div>
+				</div> 
+
+    <div class="selector_wrapper">
+	<div class="pmy_selector" style="margin:  50px; position: relative;">
+
+		<div id="price_selector_text">PRICE</div>
+        <div id="mileage_selector_text">MILEAGE</div>
+        <div id="year_selector_text">YEAR</div>
+		<img src="{{ url_for('static', filename='images/arrow.png') }}" id="arrow_image"/>
+
+		<div id="price_mileage_switch" style="position: absolute;min-width: 75px;min-height: 35px;z-index: 1000;"></div>
+		<div id="year_price_switch" style="position: absolute;top: 35px;min-width: 37px;min-height: 35px;z-index: 1000;"></div>
+		<div id="year_mileage_switch" style="position: absolute;top: 35px;left: 37px;min-width: 37px;min-height: 35px;z-index: 1000"></div>
+
+    </div>
+    </div>
+            </div>    
+        </div>
+        <div id="analytics" class="col-md-4">
+            <div class="row">
+                <div class="col-md-6 graph" id="price_plot"></div>
+                <div class="col-md-6 graph" id="mileage_plot"></div>
+                <div class="col-md-12 graph" id="combined_plot"></div>
+           </div>
+        </div>
+    </div>
+
+    <div id="price_analytics" class='row'></div>
+
+    <div id="postings" class='row'></div>
+
+  	<nav class="navbar navbar-dark bg-dark" id="navbar">
+        <div style="display: flex; width: 100%;">
+            <div id="previous_page">Previous Page</div>
+            <div id="page_number">0/0</div>
+            <div id="next_page">Next Page</div>
+        </div>
+    </nav>
+</div>
+
+{% endblock %}

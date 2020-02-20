@@ -1,0 +1,11 @@
+.DS_Store
+.env
+__pycache__/
+*/__pycache__/
+env/
+*.swp
+.venv
+venv/
+*.png
+*.pyc
+helpers.py*

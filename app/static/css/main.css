@@ -1,0 +1,277 @@
+body{
+    background-color: #cad2d3;
+}
+
+#density_controls{
+    width: 100%
+}
+
+.top_left_info button{
+    font-size: 0.9em;
+    text-align: right;
+    padding: 5px;
+}
+
+.noresults{
+ 	text-align: center;
+    font-size: 2em;
+    color: white;
+    margin-top: 100px;
+    text-transform: capitalize;
+    font-weight: 100;
+} 
+
+#cover{
+    position: absolute;
+    width: 100%;
+    z-index: 9000;
+    background-color: #cad2d3;
+    height: 430px;
+    margin-top: 5px;
+}
+
+.top_left_info{
+	z-index: 1001;
+    width: 80px;
+    position: relative;
+}
+
+#total_count{
+    margin-top: 75px;
+    width: 100%;
+}
+
+.noclick{
+    pointer-events: none;
+}
+
+input[type="text"]:focus{
+    outline: None;
+
+}
+
+#content{
+    padding-top: 5px;
+
+}
+
+#content .row{
+    max-width: 100%;
+    margin: 0;
+}
+
+#price_selector_text{
+    position: absolute;
+    top: 28px;
+    left: 8px;
+    font-size: 0.8em;
+    transform: rotate(-60deg);
+    color: white;
+    z-index: 1;
+}
+
+#mileage_selector_text{
+	position: absolute;
+    left: 33px;
+    top: 28px;
+    transform: rotate(60deg);
+    color: white;
+    font-size: 0.8em;
+    z-index: 1;
+}
+
+#year_selector_text{
+    position: absolute;
+    top: 56px;
+    left: 26px;
+    color: white;
+    font-size: 0.8em;
+    z-index: 1;
+}
+
+.selector_wrapper{
+    z-index: 2000;
+    position: absolute;
+    top: -46px;
+    right: 28px;
+}
+
+#arrow_image{
+    position: absolute;
+    width: 75px;
+}
+
+.popup_list{
+    max-height: 150px;
+    overflow: scroll;
+}
+
+#map_info{
+    z-index: 1001;
+    text-align: right;
+    font-weight: 200;
+    font-size: 1.5em;
+    pointer-events: auto;
+}
+
+.graph{
+
+    height: 200px;
+
+}
+
+.leaflet-heatmap-layer {
+    opacity: .7;
+}
+
+#map { 
+    
+    margin: 0 auto;
+    height: 400px; 
+    width: 100%;
+}
+
+.search_bars{
+    background-color: #343a40!important;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+.search_bars .bar{
+    display: flex;
+    padding: 5px 0px 5px 0px;
+}
+
+.bar input:first-child{
+
+	border-radius: 15px 0px 0px 15px;
+    width: 100%;
+}
+
+.bar input:last-child{
+
+    border-radius: 0px 15px 15px 0px;
+    width: 100%;
+}
+
+.query_bar input:first-child{
+
+	border-radius: 15px 15px 15px 15px;
+    width: 100%;
+}
+
+.bar input{
+
+    border: None;
+    width: 100%;
+    text-transform: capitalize;
+
+}
+
+.post{
+    margin: 30px 5px 15px 5px;
+}
+
+.post div {
+    display: flex;
+}
+
+.title{
+    margin-bottom: 5px;
+    border-bottom: 1px solid black;
+}
+
+.title a{
+	font-size: 0.8em;
+    width: 100%;
+    text-align: right;
+}
+
+.headers{
+	font-variant: small-caps;
+	font-weight: 200;
+}
+
+.value{
+    text-align: right;
+    width: 100%;
+    font-variant: all-petite-caps;
+}
+
+.map_stuff{
+    margin-bottom: 15px !important;
+}
+
+.post img{
+    width: 19px;
+    height: 19px;
+}
+
+#details{
+	padding: 0;
+    background-color: #f4f6f6;
+}
+
+#details .post{
+	margin: 5px !important;
+}
+
+#details_title{
+	display: flex;
+    margin: 0 20px 0 20px;
+    border-bottom: 1px solid black;
+}
+
+#previous_page{
+   	width: 100%;
+    text-align: left;
+    color: #f4f6f6; 
+}
+
+#next_page{
+   	width: 100%;
+    text-align: right;
+    color: #f4f6f6; 
+}
+
+#page_number{
+   	width: 100%;
+    text-align: center;
+    color: #f4f6f6; 
+}
+
+#postings_title{
+	text-align: center;
+    color: #f4f6f6;
+    font-weight: 200;
+    border-bottom: 1px solid #f4f6f6;
+    background-color: #343a40!important;
+    margin-top: 20px;
+	font-size: 1.5em;
+}
+
+
+#price_analytics .row{
+    width: 100%;
+}
+
+#price_analytics input{
+    background-color: inherit;
+    border: none;
+    text-align: right;
+}
+
+.analytics_wrapper{
+    display: flex;
+	height: 25px;
+}
+
+.computed_price{
+	text-align: center;
+    font-size: 2em;
+    height: 50px;
+    top: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
