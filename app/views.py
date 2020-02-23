@@ -46,7 +46,7 @@ def get_details():
     except Exception:
         return "Error", 400
 
-    sql = """SELECT *, extract(YEAR from year) as year, to_char(post_date, 'dd/MM/yyyy') as post_date_h FROM ads WHERE puid = %s ORDER BY post_date;"""
+    sql = """SELECT *, extract(YEAR from year) as year, to_char(post_date, 'dd/MM/yyyy') as post_date_h FROM ads_web WHERE puid = %s ORDER BY post_date;"""
     details = database_connection().query_smart(sql, [puid])
     
     # Get some fields form VIN decoder
@@ -134,7 +134,7 @@ def get_models():
 
     # Get models
     db = database_connection()
-    db.cur.execute("SELECT DISTINCT model_clean, trim_clean, series_clean FROM ads WHERE make=%s ORDER BY model_clean,trim_clean,series_clean;",[make])
+    db.cur.execute("SELECT DISTINCT model_clean, trim_clean, series_clean FROM ads_web WHERE make=%s ORDER BY model_clean,trim_clean,series_clean;",[make])
     rslt = db.cur.fetchall()
     models = [{'model': item[0], 'trim': item[1], 'series': item[2]} for item in rslt]
     return jsonify(models)
@@ -249,7 +249,7 @@ def get_map():
     FROM
     (
     SELECT row_number() over (partition by puid order by post_date desc) as ln, * from (
-    SELECT * from ads where post_date > CURRENT_TIMESTAMP - INTERVAL '30 days' AND (expired is null or not expired) AND mileage is not null and price is not null) as a
+    SELECT * from ads_web where post_date > CURRENT_TIMESTAMP - INTERVAL '30 days' AND (expired is null or not expired) AND mileage is not null and price is not null) as a
     ) as b WHERE ln = 1 {1}) as c group by x_round, y_round)
     
     SELECT year, price, mileage, cnt, lon, lat, d.* FROM temp CROSS JOIN (
@@ -308,7 +308,7 @@ def get_listings():
                         title 
                 FROM (
                     SELECT row_number() over (partition by puid order by post_date desc) as ln, * from (
-                        SELECT * from ads where post_date > CURRENT_TIMESTAMP - INTERVAL '30 days' AND (expired is null or not expired) {} ORDER BY post_date desc LIMIT 15000)
+                        SELECT * from ads_web where post_date > CURRENT_TIMESTAMP - INTERVAL '30 days' AND (expired is null or not expired) {} ORDER BY post_date desc LIMIT 15000)
                     as a ) 
                 as b  WHERE ln = 1 order by post_date desc LIMIT 7800)
                 
