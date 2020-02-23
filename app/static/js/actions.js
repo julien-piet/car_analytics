@@ -14,15 +14,15 @@ function refresh_results(e){
         if (this.value.length) query[this.name] = this.value;
     });
     latest_query = query;
+    return query;
+}
+
+function load_results(query){
 
     close_details();
     reset_navigation();
     update_price_analytics(query);
 
-    return query;
-}
-
-function load_results(query){
     jQuery.get( "api/get_map", query, map_update);
     jQuery.get( "api/get_listings", query, update_listings);
 }
@@ -33,8 +33,9 @@ function refresh_map(e){
     query["geo_coord"] = "{0};{1}".format(mymap.getCenter().lat, mymap.getCenter().lng);
     query["zoom"] = mymap.getZoom();
     latest_query = query;
+    console.log(query);
 
-    load_results();
+    load_results(query);
 }
 
 function navigate_results(direction){
