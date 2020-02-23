@@ -1,4 +1,4 @@
-# Car analytic
+# Car analytics
 *A webapp to display and analyze the data from the Octopost*
 
 Check out octopost at https://github.com/julien-piet/octopost
