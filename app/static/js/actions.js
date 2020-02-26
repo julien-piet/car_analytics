@@ -23,6 +23,14 @@ function load_results(query){
     reset_navigation();
     update_price_analytics(query);
 
+    // Show map wheel
+    const cover = $("#cover");
+    const wheel = $("#wheel");
+    const no_results = $("#no_results");
+    no_results.hide();
+    cover.show();
+    wheel.show();
+
     jQuery.get( "api/get_map", query, map_update);
     jQuery.get( "api/get_listings", query, update_listings);
 }

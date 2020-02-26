@@ -64,9 +64,11 @@ function map_update( data ) {
     // Remove map cover
 
     const cover = $("#cover");
+    const wheel = $("#wheel");
+    const no_results = $("#no_results");
+    wheel.hide();
     if (!(data.listings.length)) {
-        cover.html("<div class='noresults'>No results found</div>");
-        cover.show();
+        no_results.show();
         return;
     }
     cover.hide();
