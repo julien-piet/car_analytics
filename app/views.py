@@ -117,7 +117,7 @@ def get_details():
 def get_makes():
     
     db = database_connection()
-    makes = [item[0] for item in db.query("SELECT DISTINCT make FROM models ORDER BY make;")]
+    makes = [item[0] for item in db.query("SELECT DISTINCT make FROM ads_web ORDER BY make;")]
     return jsonify(makes)
 
 
