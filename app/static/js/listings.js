@@ -91,7 +91,7 @@ function post_details(post){
 
             // Treat individual cases
             if (v.length === 0) continue;
-            if (["model", "trim", "series" ,"geo", "puid", "url", "update", "title", "post_date", "post_date_h", "expired"].indexOf(k) !== -1) continue;
+            if (["model", "trim", "series" ,"geo", "puid", "url", "update", "title", "post_date", "post_date_h", "expired", "id", "refresh_for"].indexOf(k) !== -1) continue;
             else if (k === "model_clean") k = "model";
             else if (k === "top_speed") v = String(v) + " MPH";
             else if (k === "trim_clean") k = "trim";
