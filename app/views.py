@@ -8,9 +8,10 @@ from .aux import vin_check
 from flask import jsonify
 import datetime
 import re
-from cgi import escape
+from html import escape
 import requests
 import math
+import time
 from .learning import *
 
 # Constants
@@ -21,6 +22,11 @@ radius_ratio = 2.1
 
 @app.route('/')
 def index():
+
+    # Log IP
+    with open("ips.log", "a") as outfile:
+        outfile.write("{0} : {1}\n".format(time.time(), request.environ.get('HTTP_X_REAL_IP', request.remote_addr)))
+
     return render_template("index.html")
 
 
